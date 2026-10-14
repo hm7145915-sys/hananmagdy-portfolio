@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hanan Magdy | Portfolio</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+<style>
+:root {
+    --purple: #a855f7;
+    --cyan: #22d3ee;
+    --dark: #090912;
+}
+
+html { scroll-behavior: smooth; scroll-padding-top: 75px; }
+
+body {
+    background: #0d0d18;
+    color: white;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+.navbar {
+    background: rgba(9,9,18,.92);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid #a855f733;
+}
+
+.navbar-brand span { color: var(--purple); }
+
+.nav-link {
+    color: #ddd !important;
+    margin-left: 8px;
+    transition: .3s;
+    position: relative;
+}
+
+.nav-link:hover {
+    color: var(--cyan) !important;
+    transform: translateY(-3px);
+}
+
+.nav-link::after {
+    content: "";
+    position: absolute;
+    height: 2px;
+    background: var(--purple);
+    bottom: 0;
+    left: 8px;
+    right: 100%;
+    transition: .3s;
+}
+
+.nav-link:hover::after { right: 8px; }
+
+/* Hero */
+#home {
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg,#090912,#201039,#101020,#30104a);
+    background-size: 300% 300%;
+    animation: gradient 10s ease infinite;
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes gradient {
+    0%,100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+.orb {
+    position: absolute;
+    width: 230px;
+    height: 230px;
+    border-radius: 50%;
+    background: #a855f71c;
+    filter: blur(60px);
+    animation: float 6s ease-in-out infinite alternate;
+    pointer-events: none;
+}
+
+.orb.one { top: 10%; left: -50px; }
+.orb.two { bottom: 0; right: -50px; animation-delay: -3s; }
+
+@keyframes float {
+    from { transform: translate(0,0); }
+    to { transform: translate(30px,-35px); }
+}
+
+.hero-text { animation: enter 1s ease both; }
+
+@keyframes enter {
+    from { opacity: 0; transform: translateY(35px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.gradient-text {
+    background: linear-gradient(90deg,#c084fc,#22d3ee);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.profile {
+    width: 240px;
+    height: 240px;
+    object-fit: cover;
+    border: 3px solid var(--purple);
+    box-shadow: 0 0 25px #a855f777;
+    animation: profileFloat 4s ease-in-out infinite,
+               glow 3s ease-in-out infinite alternate;
+    transition: .4s;
+}
+
+.profile:hover { transform: scale(1.07); }
+
+@keyframes profileFloat {
+    0%,100% { translate: 0 0; }
+    50% { translate: 0 -12px; }
+}
+
+@keyframes glow {
+    from { box-shadow: 0 0 15px #a855f755; }
+    to { box-shadow: 0 0 35px #a855f7, 0 0 60px #a855f733; }
+}
+
+/* General sections */
+section:not(#home) { padding: 90px 0; }
+
+.section-title { margin-bottom: 45px; }
+
+.section-title h2 { font-weight: 800; }
+
+.section-title h2 span { color: var(--purple); }
+
+.section-title p { color: #aaa; }
+
+.card {
+    background: #151522;
+    color: white;
+    border: 1px solid #ffffff0d;
+    border-radius: 18px;
+    height: 100%;
+    transition: transform .35s, box-shadow .35s, border-color .35s;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    border-color: #a855f777;
+    box-shadow: 0 15px 35px #a855f722;
+}
+
+.skill-icon {
+    font-size: 45px;
+    color: var(--purple);
+    transition: .35s;
+}
+
+.card:hover .skill-icon {
+    transform: scale(1.2) rotate(-8deg);
+    color: var(--cyan);
+}
+
+.project-img {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+    transition: transform .5s;
+}
+
+.card:hover .project-img { transform: scale(1.04); }
+
+.project-image-wrap { overflow: hidden; border-radius: 18px 18px 0 0; }
+
+.btn-purple {
+    background: var(--purple);
+    color: white;
+    border: 1px solid var(--purple);
+}
+
+.btn-purple:hover {
+    background: #7e22ce;
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 22px #a855f755;
+}
+
+.btn-outline-light:hover {
+    transform: translateY(-3px);
+}
+
+.badge-custom {
+    color: var(--cyan);
+    background: #22d3ee15;
+    border: 1px solid #22d3ee55;
+    padding: 9px 14px;
+    border-radius: 30px;
+}
+
+.form-control {
+    background: #10101b;
+    border: 1px solid #393347;
+    color: white;
+}
+
+.form-control:focus {
+    background: #10101b;
+    color: white;
+    border-color: var(--purple);
+    box-shadow: 0 0 0 4px #a855f722;
+}
+
+.form-control::placeholder { color: #888; }
+
+footer {
+    background: #07070d;
+    border-top: 1px solid #a855f755;
+}
+
+.social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border: 1px solid #a855f777;
+    border-radius: 50%;
+    color: white;
+    margin: 5px;
+    text-decoration: none;
+    transition: .3s;
+}
+
+.social-link:hover {
+    background: var(--purple);
+    transform: translateY(-5px);
+}
+
+/* Reveal on scroll */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity .7s ease, transform .7s ease;
+}
+
+.reveal.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (max-width: 767px) {
+    #home { text-align: center; padding: 80px 0; }
+    .profile { width: 200px; height: 200px; }
+    section:not(#home) { padding: 65px 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation: none !important;
+        scroll-behavior: auto !important;
+        transition: none !important;
+    }
+    .reveal { opacity: 1; transform: none; }
+}
+</style>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+<div class="container">
+<a class="navbar-brand fw-bold fs-4" href="#home">
+<span>Hanan</span> Portfolio
+</a>
+<button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navMenu">
+<div class="navbar-nav ms-auto">
+<a class="nav-link" href="#home">Home</a>
+<a class="nav-link" href="#about">About</a>
+<a class="nav-link" href="#skills">Skills</a>
+<a class="nav-link" href="#projects">Projects</a>
+<a class="nav-link" href="#contact">Contact</a>
+</div>
+</div>
+</div>
+</nav>
+
+<section id="home">
+<div class="orb one"></div>
+<div class="orb two"></div>
+<div class="container position-relative">
+<div class="row align-items-center g-5">
+<div class="col-md-7 hero-text">
+<span class="badge-custom d-inline-block mb-4">
+<i class="bi bi-stars"></i> Welcome To My World
+</span>
+<h1 class="display-4 fw-bold">
+Hi, I'm <span class="gradient-text">Hanan Magdy</span>
+</h1>
+<h2 class="h3 my-3 gradient-text">Software Engineering Student</h2>
+<p class="text-white-50 fs-5">
+Senior 2027 | Web Developer
+<br>
+I create modern, responsive and beautiful websites
+using HTML, CSS, Bootstrap and JavaScript.
+</p>
+<a href="#projects" class="btn btn-purple btn-lg me-2 mt-3">
+<i class="bi bi-code-slash"></i> Explore Projects
+</a>
+<a href="#contact" class="btn btn-outline-light btn-lg mt-3">
+Contact Me
+</a>
+</div>
+<div class="col-md-5 text-center hero-text">
+<img src="assets/img/WhatsApp Image 2026-10-13 at 5.34.53 PM.jpeg"
+alt="Hanan Magdy " class="profile rounded-circle">
+<h4 class="mt-4 fw-bold">Creative Developer</h4>
+<p class="text-white-50">Turning ideas into reality ✨</p>
+</div>
+</div>
+</div>
+</section>
+
+<section id="about">
+<div class="container">
+<div class="section-title text-center reveal">
+<h2>About <span>Me</span></h2>
+<p>Get to know me better</p>
+</div>
+<div class="row g-4">
+<div class="col-md-6 reveal">
+<div class="card p-4">
+<div class="card-body">
+<i class="bi bi-person-workspace skill-icon"></i>
+<h3 class="fw-bold mt-3">Who Am I?</h3>
+<p class="text-white-50">
+I am a Software Engineering student passionate about web development,
+design and creating useful digital experiences.
+</p>
+<p class="text-white-50 mb-0">
+I love learning new technologies and building responsive websites.
+</p>
+</div>
+</div>
+</div>
+<div class="col-md-6 reveal">
+<div class="card p-4">
+<div class="card-body">
+<h3 class="fw-bold mb-4">Personal Information</h3>
+<p><i class="bi bi-person gradient-text"></i> <strong>Name:</strong> Hanan Magdy</p>
+<p><i class="bi bi-mortarboard gradient-text"></i> <strong>Major:</strong> Software Engineering</p>
+<p><i class="bi bi-geo-alt gradient-text"></i> <strong>Location:</strong> Egypt</p>
+<p class="mb-0"><i class="bi bi-calendar-event gradient-text"></i> <strong>Class:</strong> Senior 2027</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="skills" style="background:#10101b">
+<div class="container">
+<div class="section-title text-center reveal">
+<h2>My <span>Skills</span></h2>
+<p>Technologies I'm learning and using</p>
+</div>
+<div class="row g-4 text-center">
+<div class="col-6 col-md-3 reveal">
+<div class="card p-4">
+<i class="bi bi-filetype-html skill-icon"></i>
+<h5 class="mt-3 fw-bold">HTML5</h5>
+<p class="text-white-50 mb-0">Web Structure</p>
+</div>
+</div>
+<div class="col-6 col-md-3 reveal">
+<div class="card p-4">
+<i class="bi bi-filetype-css skill-icon"></i>
+<h5 class="mt-3 fw-bold">CSS3</h5>
+<p class="text-white-50 mb-0">Web Design</p>
+</div>
+</div>
+<div class="col-6 col-md-3 reveal">
+<div class="card p-4">
+<i class="bi bi-bootstrap-fill skill-icon"></i>
+<h5 class="mt-3 fw-bold">Bootstrap</h5>
+<p class="text-white-50 mb-0">Responsive UI</p>
+</div>
+</div>
+<div class="col-6 col-md-3 reveal">
+<div class="card p-4">
+<i class="bi bi-filetype-js skill-icon"></i>
+<h5 class="mt-3 fw-bold">JavaScript</h5>
+<p class="text-white-50 mb-0">Interactivity</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="projects">
+<div class="container">
+<div class="section-title text-center reveal">
+<h2>My <span>Projects</span></h2>
+<p>A selection of my work</p>
+</div>
+<div class="row g-4">
+<div class="col-md-4 reveal">
+<div class="card">
+<div class="project-image-wrap">
+<img class="project-img" src="https://placehold.co/600x400/201039/ffffff?text=Student+System" alt="Student System">
+</div>
+<div class="card-body p-4">
+<span class="badge-custom">Management</span>
+<h4 class="mt-3">Student System</h4>
+<p class="text-white-50">A student records management project.</p>
+<a href="#contact" class="btn btn-outline-light">Ask About Project <i class="bi bi-arrow-up-right"></i></a>
+</div>
+</div>
+</div>
+<div class="col-md-4 reveal">
+<div class="card">
+<div class="project-image-wrap">
+<img class="project-img" src="https://placehold.co/600x400/251044/ffffff?text=Portfolio+Website" alt="Portfolio Website">
+</div>
+<div class="card-body p-4">
+<span class="badge-custom">Web Design</span>
+<h4 class="mt-3">Personal Portfolio</h4>
+<p class="text-white-50">A responsive website introducing my skills.</p>
+<a href="#contact" class="btn btn-outline-light">Ask About Project <i class="bi bi-arrow-up-right"></i></a>
+</div>
+</div>
+</div>
+<div class="col-md-4 reveal">
+<div class="card">
+<div class="project-image-wrap">
+<img class="project-img" src="https://placehold.co/600x400/30104a/ffffff?text=Online+Store" alt="Online Store">
+</div>
+<div class="card-body p-4">
+<span class="badge-custom">E-Commerce</span>
+<h4 class="mt-3">Online Store</h4>
+<p class="text-white-50">A simple online store interface concept.</p>
+<a href="#contact" class="btn btn-outline-light">Ask About Project <i class="bi bi-arrow-up-right"></i></a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="contact" style="background:#10101b">
+<div class="container">
+<div class="section-title text-center reveal">
+<h2>Contact <span>Me</span></h2>
+<p>Have an idea? Let's talk!</p>
+</div>
+<div class="row justify-content-center reveal">
+<div class="col-md-7 col-lg-6">
+<div class="card p-3 p-md-4">
+<form id="contactForm">
+<label for="name" class="form-label">Your Name</label>
+<input id="name" class="form-control mb-3" type="text" placeholder="Enter your name" required>
+
+<label for="email" class="form-label">Your Email</label>
+<input id="email" class="form-control mb-3" type="email" placeholder="Hanan@example.com" required>
+
+<label for="message" class="form-label">Your Message</label>
+<textarea id="message" class="form-control mb-3" rows="4" placeholder="Write your message..." required></textarea>
+
+<button type="submit" class="btn btn-purple w-100">
+<i class="bi bi-send"></i> Prepare Message
+</button>
+<p id="formStatus" class="small mt-3 mb-0 text-white-50" aria-live="polite"></p>
+</form>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<footer class="text-center py-4">
+<div class="container">
+<h4 class="fw-bold"><span class="gradient-text">Hanan Magdy</span></h4>
+<p class="text-white-50">Software Engineering | Senior 2027</p>
+<div class="mb-3">
+<a class="social-link" href="#home" aria-label="Home"><i class="bi bi-house"></i></a>
+<a class="social-link" href="#projects" aria-label="Projects"><i class="bi bi-code-slash"></i></a>
+<a class="social-link" href="#contact" aria-label="Contact"><i class="bi bi-envelope"></i></a>
+</div>
+<p class="small text-white-50 mb-0">© 2026 Hanan Magdy. All Rights Reserved.</p>
+</div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const elements = document.querySelectorAll(".reveal");
+
+    if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("show");
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12 });
+
+        elements.forEach(function(element, index) {
+            element.style.transitionDelay = (index % 4) * 100 + "ms";
+            observer.observe(element);
+        });
+    } else {
+        elements.forEach(function(element) {
+            element.classList.add("show");
+        });
+    }
+
+    document.getElementById("contactForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const message = document.getElementById("message").value.trim();
+        const status = document.getElementById("formStatus");
+
+        if (!name || !email || !message) {
+            status.textContent = "Please complete all fields.";
+            return;
+        }
+
+        const subject = encodeURIComponent("Portfolio Contact from " + name);
+        const body = encodeURIComponent(
+            "Name: " + name + "\nEmail: " + email + "\n\n" + message
+        );
+
+        status.textContent = "Opening your email application...";
+        window.location.href =
+            "mailto:?subject=" + subject + "&body=" + body;
+    });
+});
+</script>
+
+</body>
+</html>
